@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+    <style>
+        :root {
+            --bg-color: #f4f4f9;
+            --text-color: #333;
+            --container-bg: #fff;
+            --button-bg: #4CAF50;
+            --button-hover-bg: #45a049;
+        }
+        [data-theme="dark"] {
+            --bg-color: #333;
+            --text-color: #f4f4f9;
+            --container-bg: #444;
+            --button-bg: #6bbf59;
+            --button-hover-bg: #5da74e;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: var(--container-bg);
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            position: relative; /* Allows absolute positioning of the button */
+        }
+        h1 {
+            margin-bottom: 20px;
+            color: var(--button-bg);
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 15px;
+        }
+        input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: var(--button-bg);
+            color: var(--text-color);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background: var(--button-hover-bg);
+        }
+        .theme-toggle {
+            position: absolute;
+            top: 12px;  /* Move the button 12px from the top */
+            right: 12px;  /* Align the button to the right */
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-size: 16px;
+            color: var(--button-bg);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="theme-toggle" onclick="toggleTheme()">🌙</button> <!-- Dark/Light Mode Button -->
+        <h1>BMI Calculator</h1>
+        <form action="/calculate" method="post">
+            <label for="weight">Weight (kg):</label>
+            <input type="number" id="weight" name="weight" step="0.1" required>
+            
+            <label for="height">Height:</label>
+            <input type="number" id="feet" name="feet" placeholder="Feet" required>
+            <input type="number" id="inches" name="inches" placeholder="Inches" required>
+            
+            <button type="submit">Calculate BMI</button>
+        </form>
+    </div>
+
+    <script>
+        // Function to toggle between light and dark modes
+        function toggleTheme() {
+            const currentTheme = document.body.getAttribute('data-theme');
+            document.body.setAttribute('data-theme', currentTheme === 'dark' ? 'light' : 'dark');
+        }
+
+        // Initialize theme to light mode
+        document.body.setAttribute('data-theme', 'light');
+    </script>
+</body>
+</html>
